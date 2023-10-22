@@ -1,0 +1,28 @@
+---
+import { astroI18n, t } from "astro-i18n";
+
+import LocaleSwitcher from "@components/i18n_localeSwitcher.astro";
+import HrefLangs from "@components/i18n_hrefLangs.astro";
+import Navigation from "@components/Navigation.astro";
+
+const { title, description } = Astro.props.frontmatter || Astro.props;
+---
+
+<!doctype html>
+<html lang={astroI18n.locale}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<HrefLangs />
+		<title>
+			{title}
+		</title>
+	</head>
+	<body>
+		<LocaleSwitcher showCurrent={false} />
+		<Navigation />
+		<slot />
+	</body>
+</html>
